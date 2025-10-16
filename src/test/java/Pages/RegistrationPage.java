@@ -1,6 +1,7 @@
 package Pages;
 
 import Pages.components.CalendarComponent;
+import Pages.components.RegistrationResultsModal;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.text;
@@ -9,6 +10,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
     CalendarComponent calendarComponent = new CalendarComponent();
+    RegistrationResultsModal registrationResultsModal  = new RegistrationResultsModal();
 
 
     private final String titleText ="Practice Form";
@@ -61,6 +63,20 @@ public class RegistrationPage {
     public RegistrationPage setBirthDate(String day, String month, String year){
         dateOfBirthInput.click();
         calendarComponent.setDate(day, month, year);
+
+        return this;
+    }
+
+
+    public RegistrationPage verifyResultsModalAppear(){
+        RegistrationResultsModal.verifyModalAppears();// доработать
+
+        return this;
+    }
+
+
+    public RegistrationPage verifyResult(String key, String value) {
+        registrationResultsModal.verifyResult(key, value);
 
         return this;
     }
