@@ -16,39 +16,45 @@ public class PracticeFormTestsWithpageObgect extends TestBase{
     void fillPracticeFormTest() {
         String userName = "Вася";
         String userlastName = "Васечкин";
+        String userEmail1 = "vasia@vasia.com";
+        String userGender = "Male";
+        String userPhone = "1234567890";
+        String birthYear = "2011";
+        String birthMonth = "July";
+        String birthDay = "07";
+        String birthDate = birthDay + " " + birthMonth + "," + birthYear;
+        String userSubject = "Math";
+        String userHobbie = "Reading";
+        String img = "img/1.png";
+        String userAddress = "Address 123";
+        String userState = "NCR";
+        String userCity = "Delhi";
+
 
         registrationPage.openPage()
                 .setFirstName(userName)
                 .setLastName(userlastName)
-                .setEmail("vasia@vasia.com")
-                .setGender("Male")
-                .setPhone("1234567890")
-                .setBirthDate("30","July","2008");
+                .setEmail(userEmail1)
+                .setGender(userGender)
+                .setPhone(userPhone)
+                .setBirthDate(birthDay,birthMonth,birthYear)
+                .setSubject(userSubject)
+                .setHobbie(userHobbie)
+                .setPicture(img)
+                .setAddress(userAddress)
+                .setState(userState)
+                .setCity(userCity)
+                .submit();
 
-
-
-        $("#subjectsInput").setValue("Math").pressEnter();//?????????????не нашла, списала
-        $("#hobbiesWrapper").$(byText("Reading")).click();
-        $("#uploadPicture").uploadFromClasspath("img/1.png");
-        $("#currentAddress").setValue("Address 123");
-        $("#state").click();
-        $("#stateCity-wrapper").$(byText("NCR")).click();
-        $("#city").click();
-        $("#stateCity-wrapper").$(byText("Delhi")).click();
-        $("#submit").click();
 
 
         registrationPage.verifyResultsModalAppear()
                 .verifyResult("Student Name", userName + userlastName)
-                .verifyResult("Student Email", "vasia@vasia.com")
-                .verifyResult("Gender", "Male")
-                .verifyResult("Mobile", "1234567890")
-                .verifyResult("Date of Birth", "30 July 2008");
+                .verifyResult("Student Email", userEmail1)
+                .verifyResult("Gender", userGender)
+                .verifyResult("Mobile", userPhone)
+                .verifyResult("Date of Birth", birthDate);
 
-
-
-        $(".table-responsive").shouldHave(text("Вася"), text("Васечкин"),
-                text("vasia@vasia.com"), text("1234567890"));
 
     }
 
